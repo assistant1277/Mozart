@@ -1,0 +1,1658 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
+    
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded-3" style="max-width: 800px;">
+    <div class="row">
+      
+      <div class="col-md-6 mb-4">
+        <label for="policyNumber" class="form-label fw-bold">Policy Number</label>
+        <input type="text" formControlName="policyNumber" id="policyNumber" class="form-control" placeholder="Enter Policy Number">
+        <div *ngIf="getValidationErrors('policyNumber').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('policyNumber')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="col-md-6 mb-4">
+        <label for="policyHolderName" class="form-label fw-bold">Policy Holder's Name</label>
+        <input type="text" formControlName="policyHolderName" id="policyHolderName" class="form-control" placeholder="Enter Policy Holder's Name">
+        <div *ngIf="getValidationErrors('policyHolderName').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('policyHolderName')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="col-md-6 mb-4">
+        <label for="insuredNames" class="form-label fw-bold">Insured Person Name(s)</label>
+        <input type="text" formControlName="insuredNames" id="insuredNames" class="form-control" placeholder="Enter Insured Person Names">
+        <div *ngIf="getValidationErrors('insuredNames').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('insuredNames')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-6 mb-4">
+        <label for="dateOfBirth" class="form-label fw-bold">Date of Birth</label>
+        <input type="date" formControlName="dateOfBirth" id="dateOfBirth" class="form-control">
+        <div *ngIf="getValidationErrors('dateOfBirth').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('dateOfBirth')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+
+    <div class="form-group mb-4">
+      <label for="contactNumber" class="form-label fw-bold">Contact Number</label>
+      <input type="tel" 
+             formControlName="contactNumber"
+             id="contactNumber"
+             class="form-control"
+             placeholder="Enter 10-digit phone number">
+      <div *ngIf="getValidationErrors('contactNumber').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('contactNumber')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group mb-4">
+      <label for="emailId" class="form-label fw-bold">Email ID</label>
+      <input type="email" 
+             formControlName="emailId"
+             id="emailId"
+             class="form-control"
+             placeholder="Enter email address">
+      <div *ngIf="getValidationErrors('emailId').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('emailId')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="row g-3">
+      
+      <div class="col-md-6">
+        <div class="form-group mb-4">
+          <label for="policyStartDate" class="form-label fw-bold">Policy Start Date</label>
+          <input type="date" 
+                 formControlName="policyStartDate"
+                 id="policyStartDate"
+                 class="form-control">
+          <div *ngIf="form.get('policyStartDate')?.touched && form.get('policyStartDate')?.errors" 
+               class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('policyStartDate')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="col-md-6">
+        <div class="form-group mb-4">
+          <label for="policyExpiryDate" class="form-label fw-bold">Policy Expiry Date</label>
+          <input type="date" 
+                 formControlName="policyExpiryDate"
+                 id="policyExpiryDate"
+                 class="form-control">
+          <div *ngIf="form.get('policyExpiryDate')?.touched && form.get('policyExpiryDate')?.errors" 
+               class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('policyExpiryDate')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+
+
+
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+
+
+    <div class="form-group mb-4">
+      <label for="paymentMode" class="form-label fw-bold">Mode of Payment</label>
+      <select formControlName="paymentMode" 
+              id="paymentMode" 
+              class="form-control">
+        <option value="">Select Payment Mode</option>
+        <option *ngFor="let option of paymentOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('paymentMode').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('paymentMode')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="form-group mb-4">
+      <label for="bankAccountNumber" class="form-label fw-bold">Bank Account Number</label>
+      <input type="text" 
+             formControlName="bankAccountNumber"
+             id="bankAccountNumber"
+             class="form-control"
+             placeholder="Enter account number">
+      <div *ngIf="getValidationErrors('bankAccountNumber').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('bankAccountNumber')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="patientName" class="form-label fw-bold">Patient Name</label>
+      <input type="text" 
+             formControlName="patientName"
+             id="patientName"
+             class="form-control"
+             placeholder="Enter patient's full name">
+      <div *ngIf="getValidationErrors('patientName').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('patientName')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="form-group mb-4">
+      <label for="ifscCode" class="form-label fw-bold">IFSC Code</label>
+      <input type="text" 
+             formControlName="ifscCode"
+             id="ifscCode"
+             class="form-control"
+             placeholder="Enter IFSC Code (e.g., ABCD0123456)"
+             uppercase>
+      <div *ngIf="getValidationErrors('ifscCode').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('ifscCode')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+
+    <div class="form-group mb-4">
+      <label for="hospitalName" class="form-label fw-bold">Hospital Name</label>
+      <input type="text" 
+             formControlName="hospitalName"
+             id="hospitalName"
+             class="form-control"
+             placeholder="Enter hospital name">
+      <div *ngIf="getValidationErrors('hospitalName').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('hospitalName')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="hospitalState" class="form-label fw-bold">Hospital State</label>
+      <select formControlName="hospitalState" 
+              id="hospitalState" 
+              class="form-control">
+        <option value="">Select State</option>
+        <option *ngFor="let option of hospitalStates" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('hospitalState').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('hospitalState')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="policyNumber" class="form-label fw-bold">Policy Number</label>
+      <input type="text" 
+             formControlName="policyNumber"
+             id="policyNumber"
+             class="form-control"
+             placeholder="Enter policy number">
+      <div *ngIf="getValidationErrors('policyNumber').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('policyNumber')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+  
+    
+    <div class="form-group mb-4">
+      <label for="hospitalCity" class="form-label fw-bold">Hospital City</label>
+      <input type="text" 
+             formControlName="hospitalCity"
+             id="hospitalCity"
+             class="form-control"
+             placeholder="Enter hospital city">
+      <div *ngIf="getValidationErrors('hospitalCity').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('hospitalCity')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+
+    
+    <div class="form-group mb-4">
+      <label for="hospitalCountry" class="form-label fw-bold">Hospital Country</label>
+      <select formControlName="hospitalCountry" 
+              id="hospitalCountry" 
+              class="form-control">
+        <option value="">Select Country</option>
+        <option *ngFor="let option of hospitalCountryOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('hospitalCountry').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('hospitalCountry')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="hospitalDistrict" class="form-label fw-bold">Hospital District</label>
+      <input type="text" 
+             formControlName="hospitalDistrict"
+             id="hospitalDistrict"
+             class="form-control"
+             placeholder="Enter hospital district">
+      <div *ngIf="getValidationErrors('hospitalDistrict').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('hospitalDistrict')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group mb-4">
+      <label for="hospitalPincode" class="form-label fw-bold">Hospital Pincode</label>
+      <input type="text" 
+             formControlName="hospitalPincode"
+             id="hospitalPincode"
+             class="form-control"
+             placeholder="Enter 6-digit pincode"
+             maxlength="6">
+      <div *ngIf="getValidationErrors('hospitalPincode').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('hospitalPincode')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+  
+    
+    <div class="form-group mb-4">
+      <label for="claimType" class="form-label fw-bold">Claim Type</label>
+      <select formControlName="claimType" 
+              id="claimType" 
+              class="form-control">
+        <option value="">Select Claim Type</option>
+        <option *ngFor="let option of claimTypeOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('claimType').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('claimType')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+   
+    <div class="form-group mb-4">
+      <label for="selectSubType" class="form-label fw-bold">Select Sub Type</label>
+      <select formControlName="selectSubType" 
+              id="selectSubType" 
+              class="form-control">
+        <option value="">Select Sub Type</option>
+        <option *ngFor="let option of subTypeOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('selectSubType').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('selectSubType')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="internalRemarks" class="form-label fw-bold">Internal Remarks</label>
+      <textarea formControlName="internalRemarks"
+                id="internalRemarks"
+                class="form-control"
+                rows="4"
+                placeholder="Enter internal remarks"></textarea>
+      <div *ngIf="getValidationErrors('internalRemarks').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('internalRemarks')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="form-group mb-4">
+        <label class="form-label fw-bold d-block">Case Priority</label>
+        <div *ngFor="let option of casePriorityOptions" class="form-check">
+          <input class="form-check-input"
+                 type="radio"
+                 [formControlName]="'casePriority'"
+                 [id]="'casePriority' + option.value"
+                 [value]="option.value">
+          <label class="form-check-label" [for]="'casePriority' + option.value">
+            {{ option.label }}
+          </label>
+        </div>
+        <div *ngIf="getValidationErrors('casePriority').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('casePriority')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="form-group mb-4">
+        <label for="patientGender" class="form-label fw-bold">Patient Gender</label>
+        <select formControlName="patientGender" 
+                id="patientGender" 
+                class="form-control">
+          <option value="">Select Gender</option>
+          <option *ngFor="let option of patientGenderOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('patientGender').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('patientGender')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+
+    
+    <div class="form-group mb-4">
+      <label for="patientRelationship" class="form-label fw-bold">Patient Relationship</label>
+      <select formControlName="patientRelationship" 
+              id="patientRelationship" 
+              class="form-control">
+        <option value="">Select Relationship</option>
+        <option *ngFor="let option of patientRelationshipOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('patientRelationship').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('patientRelationship')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="policyType" class="form-label fw-bold">Policy Type</label>
+      <select formControlName="policyType" 
+              id="policyType" 
+              class="form-control">
+        <option value="">Select Policy Type</option>
+        <option *ngFor="let option of policyTypeOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('policyType').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('policyType')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="form-group mb-4">
+        <label for="patientAge" class="form-label fw-bold">Patient Age</label>
+        <input type="number" 
+               formControlName="patientAge"
+               id="patientAge"
+               class="form-control"
+               placeholder="Enter patient's age"
+               min="1"
+               max="120">
+        <div *ngIf="getValidationErrors('patientAge').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('patientAge')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="policyStartDate" class="form-label fw-bold">Policy Start Date</label>
+        <input type="date" 
+               formControlName="policyStartDate"
+               id="policyStartDate"
+               class="form-control">
+        <div *ngIf="getValidationErrors('policyStartDate').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('policyStartDate')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+   
+    <div class="form-group mb-4">
+      <label for="policyAttachmentDate" class="form-label fw-bold">Policy Attachment Date</label>
+      <input type="date" 
+             formControlName="policyAttachmentDate"
+             id="policyAttachmentDate"
+             class="form-control">
+      <div *ngIf="getValidationErrors('policyAttachmentDate').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('policyAttachmentDate')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="providerId" class="form-label fw-bold">Provider ID</label>
+      <input type="text" 
+             formControlName="providerId"
+             id="providerId"
+             class="form-control"
+             placeholder="Enter Provider ID (PROV12345)"
+             uppercase>
+      <div *ngIf="getValidationErrors('providerId').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('providerId')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="form-group mb-4">
+        <label for="providerDistrict" class="form-label fw-bold">Provider District</label>
+        <input type="text" 
+               formControlName="providerDistrict"
+               id="providerDistrict"
+               class="form-control"
+               placeholder="Enter provider district">
+        <div *ngIf="getValidationErrors('providerDistrict').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('providerDistrict')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="providerPincode" class="form-label fw-bold">Provider Pin code</label>
+        <input type="text" 
+               formControlName="providerPincode"
+               id="providerPincode"
+               class="form-control"
+               placeholder="Enter 6-digit pincode"
+               maxlength="6">
+        <div *ngIf="getValidationErrors('providerPincode').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('providerPincode')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+    
+    <div class="form-group mb-4">
+      <label for="providerCity" class="form-label fw-bold">Provider City</label>
+      <input type="text" 
+             formControlName="providerCity"
+             id="providerCity"
+             class="form-control"
+             placeholder="Enter provider city">
+      <div *ngIf="getValidationErrors('providerCity').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('providerCity')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="providerEmail" class="form-label fw-bold">Provider Email ID</label>
+      <input type="email" 
+             formControlName="providerEmail"
+             id="providerEmail"
+             class="form-control"
+             placeholder="example@provider.com">
+      <div *ngIf="getValidationErrors('providerEmail').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('providerEmail')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+     
+     <div class="form-group mb-4">
+        <label for="claimCategory" class="form-label fw-bold">Claim Category</label>
+        <select formControlName="claimCategory" 
+                id="claimCategory" 
+                class="form-control">
+          <option value="">Select Claim Category</option>
+          <option *ngFor="let option of claimCategoryOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('claimCategory').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('claimCategory')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="selectSubType" class="form-label fw-bold">Select Sub Type</label>
+        <select formControlName="selectSubType" 
+                id="selectSubType" 
+                class="form-control">
+          <option value="">Select Sub Type</option>
+          <option *ngFor="let option of selectSubTypeOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('selectSubType').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('selectSubType')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+    
+    <div class="form-group mb-4">
+      <label for="claimServiceType" class="form-label fw-bold">Claim Service Type</label>
+      <select formControlName="claimServiceType" 
+              id="claimServiceType" 
+              class="form-control">
+        <option value="">Select Service Type</option>
+        <option *ngFor="let option of claimServiceTypeOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('claimServiceType').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('claimServiceType')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group mb-4">
+      <label for="inwardDateTime" class="form-label fw-bold">Inward Date and Time</label>
+      <input type="datetime-local" 
+             formControlName="inwardDateTime"
+             id="inwardDateTime"
+             class="form-control">
+      <div *ngIf="getValidationErrors('inwardDateTime').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('inwardDateTime')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+        <label for="benefitGroup" class="form-label fw-bold">Benefit Group</label>
+        <select formControlName="benefitGroup" 
+                id="benefitGroup" 
+                class="form-control">
+          <option value="">Select Benefit Group</option>
+          <option *ngFor="let option of benefitGroupOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('benefitGroup').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('benefitGroup')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="benefitType" class="form-label fw-bold">Benefit Type</label>
+        <select formControlName="benefitType" 
+                id="benefitType" 
+                class="form-control">
+          <option value="">Select Benefit Type</option>
+          <option *ngFor="let option of benefitTypeOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('benefitType').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('benefitType')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+    
+    <div class="form-group mb-4">
+      <label for="roomRentIncurred" class="form-label fw-bold">Room Rent Incurred</label>
+      <input type="number" 
+             formControlName="roomRentIncurred"
+             id="roomRentIncurred"
+             class="form-control"
+             placeholder="Enter room rent incurred"
+             min="0">
+      <div *ngIf="getValidationErrors('roomRentIncurred').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('roomRentIncurred')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="roomRentAllowed" class="form-label fw-bold">Room Rent Allowed</label>
+      <input type="number" 
+             formControlName="roomRentAllowed"
+             id="roomRentAllowed"
+             class="form-control"
+             placeholder="Enter room rent allowed"
+             min="0">
+      <div *ngIf="getValidationErrors('roomRentAllowed').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('roomRentAllowed')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="icuIncurred" class="form-label fw-bold">ICU Incurred</label>
+      <input type="number" 
+             formControlName="icuIncurred"
+             id="icuIncurred"
+             class="form-control"
+             placeholder="Enter ICU charges incurred"
+             min="0">
+      <div *ngIf="getValidationErrors('icuIncurred').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('icuIncurred')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-4">
+        <label for="icuAllowed" class="form-label fw-bold">ICU Allowed</label>
+        <input type="number" 
+               formControlName="icuAllowed"
+               id="icuAllowed"
+               class="form-control"
+               placeholder="Enter ICU allowed amount"
+               min="0">
+        <div *ngIf="getValidationErrors('icuAllowed').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('icuAllowed')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+    
+    <div class="form-group mb-4">
+      <label for="claimType" class="form-label fw-bold">Claim Type</label>
+      <select formControlName="claimType" 
+              id="claimType" 
+              class="form-control">
+        <option value="">Select Claim Type</option>
+        <option *ngFor="let option of claimTypeOptions" 
+                [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <div *ngIf="getValidationErrors('claimType').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('claimType')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="productCode" class="form-label fw-bold">Product Code</label>
+      <input type="text" 
+             formControlName="productCode"
+             id="productCode"
+             class="form-control"
+             placeholder="Enter product code (e.g., PROD123)">
+      <div *ngIf="getValidationErrors('productCode').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('productCode')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="emergencyContactName" class="form-label fw-bold">Emergency Contact Name</label>
+      <input type="text" 
+             formControlName="emergencyContactName"
+             id="emergencyContactName"
+             class="form-control"
+             placeholder="Enter emergency contact name">
+      <div *ngIf="getValidationErrors('emergencyContactName').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('emergencyContactName')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+        <label for="emergencyContactNumber" class="form-label fw-bold">Emergency Contact Number</label>
+        <input type="text" 
+               formControlName="emergencyContactNumber"
+               id="emergencyContactNumber"
+               class="form-control"
+               placeholder="Enter emergency contact number"
+               maxlength="10">
+        <div *ngIf="getValidationErrors('emergencyContactNumber').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('emergencyContactNumber')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+   
+    <div class="form-group mb-4">
+      <label for="emergencyEmail" class="form-label fw-bold">Emergency Email</label>
+      <input type="email" 
+             formControlName="emergencyEmail"
+             id="emergencyEmail"
+             class="form-control"
+             placeholder="Enter emergency email">
+      <div *ngIf="getValidationErrors('emergencyEmail').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('emergencyEmail')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="firstReportedDate" class="form-label fw-bold">First Reported Date</label>
+      <input type="date" 
+             formControlName="firstReportedDate"
+             id="firstReportedDate"
+             class="form-control">
+      <div *ngIf="getValidationErrors('firstReportedDate').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('firstReportedDate')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="policyPortDate" class="form-label fw-bold">Policy Port Date / RHIL Policy Start Date</label>
+      <input type="date" 
+             formControlName="policyPortDate"
+             id="policyPortDate"
+             class="form-control">
+      <div *ngIf="getValidationErrors('policyPortDate').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('policyPortDate')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group mb-4">
+        <label class="form-label fw-bold d-block">Customer Consent (No duplicate claims with other insurer)</label>
+        <div class="form-check" *ngFor="let option of customerConsentOptions">
+          <input class="form-check-input"
+                 type="radio"
+                 [formControlName]="'customerConsent'"
+                 [id]="'customerConsent' + option.value"
+                 [value]="option.value">
+          <label class="form-check-label" [for]="'customerConsent' + option.value">
+            {{ option.label }}
+          </label>
+        </div>
+        <div *ngIf="getValidationErrors('customerConsent').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('customerConsent')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+    
+    <div class="form-group mb-4">
+      <label for="doa" class="form-label fw-bold">DOA</label>
+      <input type="date" 
+             formControlName="doa"
+             id="doa"
+             class="form-control">
+      <div *ngIf="getValidationErrors('doa').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('doa')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="alStartDate" class="form-label fw-bold">AL Start Date</label>
+      <input type="date" 
+             formControlName="alStartDate"
+             id="alStartDate"
+             class="form-control">
+      <div *ngIf="getValidationErrors('alStartDate').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('alStartDate')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="alEndDate" class="form-label fw-bold">AL End Date</label>
+      <input type="date" 
+             formControlName="alEndDate"
+             id="alEndDate"
+             class="form-control">
+      <div *ngIf="getValidationErrors('alEndDate').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('alEndDate')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group mb-4">
+        <label for="estimatedAmount" class="form-label fw-bold">Set Estimated Amount</label>
+        <input type="number" 
+               formControlName="estimatedAmount"
+               id="estimatedAmount"
+               class="form-control"
+               placeholder="Enter estimated amount"
+               min="0">
+        <div *ngIf="getValidationErrors('estimatedAmount').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('estimatedAmount')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+    
+    <div class="form-group mb-4">
+      <label for="agreedPackageRate" class="form-label fw-bold">Agreed Package Rate</label>
+      <input type="number" 
+             formControlName="agreedPackageRate"
+             id="agreedPackageRate"
+             class="form-control"
+             placeholder="Enter agreed package rate"
+             min="0">
+      <div *ngIf="getValidationErrors('agreedPackageRate').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('agreedPackageRate')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <label for="roomEstimatedAmount" class="form-label fw-bold">Room Estimated Amount</label>
+      <input type="number" 
+             formControlName="roomEstimatedAmount"
+             id="roomEstimatedAmount"
+             class="form-control"
+             placeholder="Enter room estimated amount"
+             min="0">
+      <div *ngIf="getValidationErrors('roomEstimatedAmount').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('roomEstimatedAmount')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+      <div class="form-check">
+        <input class="form-check-input"
+               type="checkbox"
+               formControlName="kycProvided"
+               id="kycProvided">
+        <label class="form-check-label fw-bold" for="kycProvided">
+          KYC Provided
+        </label>
+      </div>
+      <div *ngIf="getValidationErrors('kycProvided').length" class="text-danger mt-1">
+        <div *ngFor="let error of getValidationErrors('kycProvided')">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="form-group mb-4">
+        <label for="claimStatus" class="form-label fw-bold">Status of Claim</label>
+        <select formControlName="claimStatus" 
+                id="claimStatus" 
+                class="form-control">
+          <option value="">Select Claim Status</option>
+          <option *ngFor="let option of claimStatusOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('claimStatus').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('claimStatus')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+
+
+
+
+
+
+
+
+
+    <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+
+        <div class="form-group mb-4">
+          <label for="classOfAccommodation" class="form-label fw-bold">Class of Accommodation</label>
+          <select formControlName="classOfAccommodation" 
+                  id="classOfAccommodation" 
+                  class="form-control">
+            <option value="">Select Class of Accommodation</option>
+            <option *ngFor="let option of classOfAccommodationOptions" 
+                    [value]="option.value">
+              {{ option.label }}
+            </option>
+          </select>
+          <div *ngIf="getValidationErrors('classOfAccommodation').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('classOfAccommodation')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    
+        
+        <div class="form-group mb-4">
+          <label for="startDate" class="form-label fw-bold">Start Date</label>
+          <input type="date" 
+                 formControlName="startDate"
+                 id="startDate"
+                 class="form-control">
+          <div *ngIf="getValidationErrors('startDate').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('startDate')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-group mb-4">
+          <label for="endDate" class="form-label fw-bold">End Date</label>
+          <input type="date" 
+                 formControlName="endDate"
+                 id="endDate"
+                 class="form-control">
+          <div *ngIf="getValidationErrors('endDate').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('endDate')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-group mb-4">
+          <label for="lengthOfStay" class="form-label fw-bold">Length of Stay</label>
+          <input type="number" 
+                 formControlName="lengthOfStay"
+                 id="lengthOfStay"
+                 class="form-control"
+                 placeholder="Enter length of stay (in days)"
+                 min="1">
+          <div *ngIf="getValidationErrors('lengthOfStay').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('lengthOfStay')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-group mb-4">
+          <label for="numberOfDays" class="form-label fw-bold">Number of Days</label>
+          <input type="number" 
+                 formControlName="numberOfDays"
+                 id="numberOfDays"
+                 class="form-control"
+                 placeholder="Enter number of days"
+                 min="1">
+          <div *ngIf="getValidationErrors('numberOfDays').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('numberOfDays')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+    <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+        
+        <div class="border-top border-bottom py-4 mb-4">
+          <h5 class="fw-bold mb-4">MEDICAL INFORMATION</h5>
+    
+          
+          <div class="form-group mb-4">
+            <label for="ped" class="form-label fw-bold">PED</label>
+            <input type="text" 
+                   formControlName="ped"
+                   id="ped"
+                   class="form-control"
+                   placeholder="Enter PED">
+            <div *ngIf="getValidationErrors('ped').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('ped')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+    
+          
+          <div class="form-group mb-4">
+            <label for="durationOfIllness" class="form-label fw-bold">Duration of Illness</label>
+            <input type="text" 
+                   formControlName="durationOfIllness"
+                   id="durationOfIllness"
+                   class="form-control"
+                   placeholder="Enter duration of illness">
+            <div *ngIf="getValidationErrors('durationOfIllness').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('durationOfIllness')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+    
+          
+          <div class="form-group mb-4">
+            <label for="medicalConditionsKnown" class="form-label fw-bold">Medical Conditions Known</label>
+            <textarea formControlName="medicalConditionsKnown"
+                      id="medicalConditionsKnown"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Enter known medical conditions"></textarea>
+            <div *ngIf="getValidationErrors('medicalConditionsKnown').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('medicalConditionsKnown')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+    
+          
+          <div class="form-group mb-4">
+            <label for="initialDiagnosis" class="form-label fw-bold">Initial Diagnosis</label>
+            <textarea formControlName="initialDiagnosis"
+                      id="initialDiagnosis"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Enter initial diagnosis"></textarea>
+            <div *ngIf="getValidationErrors('initialDiagnosis').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('initialDiagnosis')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+    
+          
+          <div class="form-group mb-4">
+            <label for="clinicalSymptoms" class="form-label fw-bold">Clinical Symptoms</label>
+            <textarea formControlName="clinicalSymptoms"
+                      id="clinicalSymptoms"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Enter clinical symptoms"></textarea>
+            <div *ngIf="getValidationErrors('clinicalSymptoms').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('clinicalSymptoms')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+
+
+    <div class="form-group mb-4">
+        <label for="diagnosis" class="form-label fw-bold">Diagnosis</label>
+        <input type="text" 
+               formControlName="diagnosis"
+               id="diagnosis"
+               class="form-control"
+               placeholder="Enter diagnosis">
+        <div *ngIf="getValidationErrors('diagnosis').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('diagnosis')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="form-group mb-4">
+        <label for="treatmentType" class="form-label fw-bold">Treatment Type</label>
+        <select formControlName="treatmentType" 
+                id="treatmentType" 
+                class="form-control">
+          <option value="">Select Treatment Type</option>
+          <option *ngFor="let option of treatmentTypeOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('treatmentType').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('treatmentType')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="causeCode" class="form-label fw-bold">Cause Code</label>
+        <input type="text" 
+               formControlName="causeCode"
+               id="causeCode"
+               class="form-control"
+               placeholder="Enter cause code (e.g., CC123)">
+        <div *ngIf="getValidationErrors('causeCode').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('causeCode')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="lineOfTreatment" class="form-label fw-bold">Line of Treatment</label>
+        <select formControlName="lineOfTreatment" 
+                id="lineOfTreatment" 
+                class="form-control">
+          <option value="">Select Line of Treatment</option>
+          <option *ngFor="let option of lineOfTreatmentOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('lineOfTreatment').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('lineOfTreatment')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="form-group mb-4">
+        <label for="deficiencies" class="form-label fw-bold">Deficiencies</label>
+        <textarea formControlName="deficiencies"
+                  id="deficiencies"
+                  class="form-control"
+                  rows="4"
+                  placeholder="Enter deficiencies"></textarea>
+        <div *ngIf="getValidationErrors('deficiencies').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('deficiencies')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group mb-4">
+        <label for="remarks" class="form-label fw-bold">Remarks</label>
+        <textarea formControlName="remarks"
+                  id="remarks"
+                  class="form-control"
+                  rows="4"
+                  placeholder="Enter remarks"></textarea>
+        <div *ngIf="getValidationErrors('remarks').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('remarks')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group mb-4">
+        <label for="riskClassificationCode" class="form-label fw-bold">Risk Classification Code</label>
+        <input type="text" 
+               formControlName="riskClassificationCode"
+               id="riskClassificationCode"
+               class="form-control"
+               placeholder="Enter risk classification code (e.g., RISK123)">
+        <div *ngIf="getValidationErrors('riskClassificationCode').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('riskClassificationCode')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+
+        </div>
+    </div>
+
+    <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+        
+        <div class="form-group mb-4">
+          <label for="icdCode" class="form-label fw-bold">ICD Code</label>
+          <input type="text" 
+                 formControlName="icdCode"
+                 id="icdCode"
+                 class="form-control"
+                 placeholder="Enter ICD code (3-7 alphanumeric characters)">
+          <div *ngIf="getValidationErrors('icdCode').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('icdCode')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    
+        
+        <div class="form-group mb-4">
+          <label for="cptCode" class="form-label fw-bold">CPT Code</label>
+          <input type="text" 
+                 formControlName="cptCode"
+                 id="cptCode"
+                 class="form-control"
+                 placeholder="Enter CPT code (5 alphanumeric characters)">
+          <div *ngIf="getValidationErrors('cptCode').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('cptCode')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    
+        
+        <div class="form-group mb-4">
+          <label for="pcsCode" class="form-label fw-bold">PCS Code</label>
+          <input type="text" 
+                 formControlName="pcsCode"
+                 id="pcsCode"
+                 class="form-control"
+                 placeholder="Enter PCS code (7 alphanumeric characters)">
+          <div *ngIf="getValidationErrors('pcsCode').length" class="text-danger mt-1">
+            <div *ngFor="let error of getValidationErrors('pcsCode')">
+              {{ error }}
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+    <div class="container mt-4 p-4 shadow-lg bg-white rounded" style="max-width: 600px;">
+    
+
+        <div class="border p-3 mb-4 rounded">
+          <h5 class="mb-3">Doctor and Consultant Details</h5>
+    
+
+          <div class="form-group mb-4">
+            <label for="doctorName" class="form-label fw-bold">Doctor Name</label>
+            <input type="text" 
+                   formControlName="doctorName"
+                   id="doctorName"
+                   class="form-control"
+                   placeholder="Enter doctor's full name">
+            <div *ngIf="getValidationErrors('doctorName').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('doctorName')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+    
+          
+          <div class="form-group mb-4">
+            <label for="doctorRegNo" class="form-label fw-bold">Registration Number</label>
+            <input type="text" 
+                   formControlName="doctorRegNo"
+                   id="doctorRegNo"
+                   class="form-control"
+                   placeholder="Enter registration number (e.g., REG12345)">
+            <div *ngIf="getValidationErrors('doctorRegNo').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('doctorRegNo')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+    
+
+          <div class="form-group mb-4">
+            <label for="doctorSpecialty" class="form-label fw-bold">Specialty</label>
+            <input type="text" 
+                   formControlName="doctorSpecialty"
+                   id="doctorSpecialty"
+                   class="form-control"
+                   placeholder="Enter specialty">
+            <div *ngIf="getValidationErrors('doctorSpecialty').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('doctorSpecialty')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+    
+          
+          <div class="form-group mb-4">
+            <label for="doctorQualification" class="form-label fw-bold">Qualification</label>
+            <input type="text" 
+                   formControlName="doctorQualification"
+                   id="doctorQualification"
+                   class="form-control"
+                   placeholder="Enter qualification">
+            <div *ngIf="getValidationErrors('doctorQualification').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('doctorQualification')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+
+        
+    
+
+          <div class="form-group mb-4">
+            <label for="stateMedicalCouncil" class="form-label fw-bold">State Medical Council</label>
+            <input type="text" 
+                   formControlName="stateMedicalCouncil"
+                   id="stateMedicalCouncil"
+                   class="form-control"
+                   placeholder="Enter State Medical Council">
+            <div *ngIf="getValidationErrors('stateMedicalCouncil').length" class="text-danger mt-1">
+              <div *ngFor="let error of getValidationErrors('stateMedicalCouncil')">
+                {{ error }}
+              </div>
+            </div>
+          </div>
+
+          
+    <div class="form-group mb-4">
+        <label for="bankName" class="form-label fw-bold">Bank Name</label>
+        <input type="text" 
+               formControlName="bankName"
+               id="bankName"
+               class="form-control"
+               placeholder="Enter bank name">
+        <div *ngIf="getValidationErrors('bankName').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('bankName')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="branchName" class="form-label fw-bold">Branch Name</label>
+        <input type="text" 
+               formControlName="branchName"
+               id="branchName"
+               class="form-control"
+               placeholder="Enter branch name">
+        <div *ngIf="getValidationErrors('branchName').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('branchName')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="ifscCode" class="form-label fw-bold">IFSC Code</label>
+        <input type="text" 
+               formControlName="ifscCode"
+               id="ifscCode"
+               class="form-control"
+               placeholder="Enter IFSC Code (e.g., ABCD0123456)"
+               uppercase>
+        <div *ngIf="getValidationErrors('ifscCode').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('ifscCode')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="form-group mb-4">
+        <label for="branchState" class="form-label fw-bold">Branch State</label>
+        <select formControlName="branchState" 
+                id="branchState" 
+                class="form-control">
+          <option value="">Select Branch State</option>
+          <option *ngFor="let option of branchStateOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('branchState').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('branchState')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="branchCity" class="form-label fw-bold">Branch City</label>
+        <input type="text" 
+               formControlName="branchCity"
+               id="branchCity"
+               class="form-control"
+               placeholder="Enter branch city">
+        <div *ngIf="getValidationErrors('branchCity').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('branchCity')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+        
+
+
+      <div class="form-group mb-4">
+        <label for="doctorPincode" class="form-label fw-bold">Pin code</label>
+        <input type="text" 
+               formControlName="doctorPincode"
+               id="doctorPincode"
+               class="form-control"
+               placeholder="Enter 6-digit pincode"
+               maxlength="6">
+        <div *ngIf="getValidationErrors('doctorPincode').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('doctorPincode')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="branchAddress" class="form-label fw-bold">Branch Address</label>
+        <textarea formControlName="branchAddress"
+                  id="branchAddress"
+                  class="form-control"
+                  rows="3"
+                  placeholder="Enter branch address"></textarea>
+        <div *ngIf="getValidationErrors('branchAddress').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('branchAddress')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="form-group mb-4">
+        <label for="accountType" class="form-label fw-bold">Account Type</label>
+        <select formControlName="accountType" 
+                id="accountType" 
+                class="form-control">
+          <option value="">Select Account Type</option>
+          <option *ngFor="let option of accountTypeOptions" 
+                  [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="getValidationErrors('accountType').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('accountType')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="form-group mb-4">
+        <label for="payeeName" class="form-label fw-bold">Payee Name</label>
+        <input type="text" 
+               formControlName="payeeName"
+               id="payeeName"
+               class="form-control"
+               placeholder="Enter payee name">
+        <div *ngIf="getValidationErrors('payeeName').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('payeeName')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+      
+    <div class="form-group mb-4">
+        <label for="accountNumber" class="form-label fw-bold">Account Number</label>
+        <input type="text" 
+               formControlName="accountNumber"
+               id="accountNumber"
+               class="form-control"
+               placeholder="Enter account number">
+        <div *ngIf="getValidationErrors('accountNumber').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('accountNumber')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group mb-4">
+        <label for="neftFrom" class="form-label fw-bold">NEFT From</label>
+        <input type="text" 
+               formControlName="neftFrom"
+               id="neftFrom"
+               class="form-control"
+               placeholder="Enter NEFT details">
+        <div *ngIf="getValidationErrors('neftFrom').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('neftFrom')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="form-group mb-4">
+        <label for="upiId" class="form-label fw-bold">UPI ID</label>
+        <input type="text" 
+               formControlName="upiId"
+               id="upiId"
+               class="form-control"
+               placeholder="Enter UPI ID (e.g., example@upi)">
+        <div *ngIf="getValidationErrors('upiId').length" class="text-danger mt-1">
+          <div *ngFor="let error of getValidationErrors('upiId')">
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  
+  
+    
+  <div class="d-grid gap-2 mt-4">
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+  </div>
+</form> 
