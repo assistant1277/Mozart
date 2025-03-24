@@ -1,141 +1,6 @@
 {
   "controls": [
     {
-      "key": "policyNumber",
-      "label": "Policy Number",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Policy number is required" },
-        { "validator": "minLength", "message": "Must be at least 5 characters", "value": 5 }
-      ],
-      "order": 1
-    },
-    {
-      "key": "policyHolderName",
-      "label": "Policy Holder's Name",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Policy holder name is required" }
-      ],
-      "order": 2
-    },
-    {
-      "key": "insuredNames",
-      "label": "Insured Person Name(s)",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Insured names are required" }
-      ],
-      "order": 3
-    },
-    {
-      "key": "dateOfBirth",
-      "label": "Date of Birth",
-      "type": "date",
-      "validations": [
-        { "validator": "required", "message": "Date of Birth is required" }
-      ],
-      "order": 4
-    },
-    {
-      "key": "contactNumber",
-      "label": "Contact Number",
-      "type": "tel",
-      "validations": [
-        { "validator": "required", "message": "Contact number is required" },
-        { "validator": "pattern", "message": "Invalid phone number format", "value": "^[0-9]{10}$" }
-      ],
-      "order": 5
-    },
-    {
-      "key": "emailId",
-      "label": "Email ID",
-      "type": "email",
-      "validations": [
-        { "validator": "required", "message": "Email is required" },
-        { "validator": "pattern", "message": "Invalid email format", "value": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" }
-      ],
-      "order": 6
-    },
-    {
-      "key": "policyStartDate",
-      "label": "Policy Start Date",
-      "type": "date",
-      "value": "2023-01-01", 
-      "validations": [
-        { "validator": "required", "message": "Policy start date is required" },
-        { 
-          "validator": "max", 
-          "message": "Start date cannot be in the future",
-          "value": "today" 
-        }
-      ],
-      "order": 7
-    },
-    {
-      "key": "policyExpiryDate",
-      "label": "Policy Expiry Date",
-      "type": "date",
-      "value": "2024-01-01", 
-      "validations": [
-        { "validator": "required", "message": "Policy expiry date is required" },
-        { 
-          "validator": "min", 
-          "message": "Expiry must be after start date",
-          "value": "policyStartDate" 
-        }
-      ],
-      "order": 8
-    },
-    {
-      "key": "paymentMode",
-      "label": "Mode of Payment",
-      "type": "select",
-      "options": [
-        { "value": "neft", "label": "NEFT" },
-        { "value": "upi", "label": "UPI" },
-        { "value": "cheque", "label": "Cheque" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Payment mode is required" }
-      ],
-      "order": 9
-    },
-    {
-      "key": "bankAccountNumber",
-      "label": "Bank Account Number",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Account number is required" },
-        { "validator": "minLength", "message": "Minimum 9 digits required", "value": 9 },
-        { "validator": "maxLength", "message": "Maximum 18 digits allowed", "value": 18 },
-        { "validator": "pattern", "message": "Only numbers are allowed", "value": "^[0-9]+$" }
-      ],
-      "order": 10
-    },
-    {
-      "key": "patientName",
-      "label": "Patient Name",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Patient name is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 11
-    },
-    {
-      "key": "ifscCode",
-      "label": "IFSC Code",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "IFSC Code is required" },
-        { "validator": "pattern", "message": "Invalid IFSC format", "value": "^[A-Za-z]{4}0[A-Za-z0-9]{6}$" },
-        { "validator": "minLength", "message": "Must be 11 characters", "value": 11 },
-        { "validator": "maxLength", "message": "Must be 11 characters", "value": 11 }
-      ],
-      "order": 12
-    },
-    {
       "key": "hospitalName",
       "label": "Hospital Name",
       "type": "text",
@@ -143,7 +8,22 @@
         { "validator": "required", "message": "Hospital name is required" },
         { "validator": "minLength", "message": "Minimum 5 characters required", "value": 5 }
       ],
-      "order": 13
+      "order": 1
+    },
+    {
+      "key": "hospitalCountry",
+      "label": "Hospital Country",
+      "type": "select",
+      "options": [
+        { "value": "IN", "label": "India" },
+        { "value": "US", "label": "United States" },
+        { "value": "UK", "label": "United Kingdom" },
+        { "value": "CA", "label": "Canada" }
+      ],
+      "validations": [
+        { "validator": "required", "message": "Country selection is required" }
+      ],
+      "order": 17
     },
     {
       "key": "hospitalState",
@@ -162,14 +42,14 @@
       "order": 14
     },
     {
-      "key": "policyNumber",
-      "label": "Policy Number",
+      "key": "hospitalDistrict",
+      "label": "Hospital District",
       "type": "text",
       "validations": [
-        { "validator": "required", "message": "Policy number is required" },
-        { "validator": "minLength", "message": "Must be at least 5 characters", "value": 5 }
+        { "validator": "required", "message": "District is required" },
+        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
       ],
-      "order": 15
+      "order": 18
     },
     {
       "key": "hospitalCity",
@@ -180,31 +60,6 @@
         { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
       ],
       "order": 16
-    },
-    {
-      "key": "hospitalCountry",
-      "label": "Hospital Country",
-      "type": "select",
-      "options": [
-        { "value": "IN", "label": "India" },
-        { "value": "US", "label": "United States" },
-        { "value": "UK", "label": "United Kingdom" },
-        { "value": "CA", "label": "Canada" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Country selection is required" }
-      ],
-      "order": 17
-    },
-    {
-      "key": "hospitalDistrict",
-      "label": "Hospital District",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "District is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 18
     },
     {
       "key": "hospitalPincode",
@@ -230,181 +85,6 @@
       "order": 20
     },
     {
-      "key": "selectSubType",
-      "label": "Select Sub Type",
-      "type": "select",
-      "options": [
-        { "value": "type1", "label": "Sub Type 1" },
-        { "value": "type2", "label": "Sub Type 2" },
-        { "value": "type3", "label": "Sub Type 3" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Sub Type is required" }
-      ],
-      "order": 21
-    },
-    {
-      "key": "internalRemarks",
-      "label": "Internal Remarks",
-      "type": "textarea",
-      "validations": [
-        { "validator": "required", "message": "Remarks are required" },
-        { "validator": "maxLength", "message": "Maximum 500 characters allowed", "value": 500 }
-      ],
-      "order": 22
-    },
-    {
-      "key": "casePriority",
-      "label": "Case Priority",
-      "type": "radio",
-      "options": [
-        { "value": "priority", "label": "Priority Case" },
-        { "value": "death", "label": "Death Case" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Case priority is required" }
-      ],
-      "order": 23
-    },
-    {
-      "key": "patientGender",
-      "label": "Patient Gender",
-      "type": "select",
-      "options": [
-        { "value": "male", "label": "Male" },
-        { "value": "female", "label": "Female" },
-        { "value": "other", "label": "Other" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Gender selection is required" }
-      ],
-      "order": 24
-    },
-    {
-      "key": "patientRelationship",
-      "label": "Patient Relationship",
-      "type": "select",
-      "options": [
-        { "value": "self", "label": "Self" },
-        { "value": "spouse", "label": "Spouse" },
-        { "value": "child", "label": "Child" },
-        { "value": "parent", "label": "Parent" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Relationship is required" }
-      ],
-      "order": 25
-    },
-    {
-      "key": "policyType",
-      "label": "Policy Type",
-      "type": "select",
-      "options": [
-        { "value": "individual", "label": "Individual" },
-        { "value": "family", "label": "Family Floater" },
-        { "value": "senior", "label": "Senior Citizen" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Policy type is required" }
-      ],
-      "order": 26
-    },
-    {
-      "key": "patientAge",
-      "label": "Patient Age",
-      "type": "number",
-      "validations": [
-        { "validator": "required", "message": "Age is required" },
-        { "validator": "min", "message": "Minimum age is 1", "value": 1 },
-        { "validator": "max", "message": "Maximum age is 120", "value": 120 }
-      ],
-      "order": 27
-    },
-    {
-      "key": "policyStartDate",
-      "label": "Policy Start Date",
-      "type": "date",
-      "validations": [
-        { "validator": "required", "message": "Start date is required" },
-        { 
-          "validator": "max", 
-          "message": "Start date cannot be in the future",
-          "value": "today"
-        }
-      ],
-      "order": 28
-    },
-    {
-      "key": "policyAttachmentDate",
-      "label": "Policy Attachment Date",
-      "type": "date",
-      "validations": [
-        { "validator": "required", "message": "Attachment date is required" },
-        { 
-          "validator": "max", 
-          "message": "Date cannot be in the future",
-          "value": "today"
-        }
-      ],
-      "order": 29
-    },
-    {
-      "key": "providerId",
-      "label": "Provider ID",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Provider ID is required" },
-        { "validator": "pattern", "message": "Invalid format (PROVXXXXX)", "value": "^PROV\\d{5}$" },
-        { "validator": "minLength", "message": "Must be 9 characters", "value": 9 },
-        { "validator": "maxLength", "message": "Must be 9 characters", "value": 9 }
-      ],
-      "order": 30
-    },
-    {
-      "key": "providerDistrict",
-      "label": "Provider District",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "District is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 31
-    },
-    {
-      "key": "providerPincode",
-      "label": "Provider Pin code",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Pincode is required" },
-        { "validator": "pattern", "message": "Invalid pincode format", "value": "^[1-9]{1}[0-9]{5}$" }
-      ],
-      "order": 32
-    },
-    {
-      "key": "providerCity",
-      "label": "Provider City",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "City is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 33
-    },
-    {
-      "key": "providerEmail",
-      "label": "Provider Email ID",
-      "type": "email",
-      "validations": [
-        { "validator": "required", "message": "Email is required" },
-        { 
-          "validator": "pattern", 
-          "message": "Invalid email format", 
-          "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$" 
-        }
-      ],
-      "order": 34
-    },
-    {
       "key": "claimCategory",
       "label": "Claim Category",
       "type": "select",
@@ -416,20 +96,6 @@
         { "validator": "required", "message": "Claim category is required" }
       ],
       "order": 35
-    },
-    {
-      "key": "selectSubType",
-      "label": "Select Sub Type",
-      "type": "select",
-      "options": [
-        { "value": "typeA", "label": "Sub Type A" },
-        { "value": "typeB", "label": "Sub Type B" },
-        { "value": "typeC", "label": "Sub Type C" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Sub Type is required" }
-      ],
-      "order": 36
     },
     {
       "key": "claimServiceType",
@@ -446,13 +112,19 @@
       "order": 37
     },
     {
-      "key": "inwardDateTime",
-      "label": "Inward Date and Time",
-      "type": "datetime-local",
-      "validations": [
-        { "validator": "required", "message": "Inward date/time is required" }
+      "key": "claimStatus",
+      "label": "Status of Claim",
+      "type": "select",
+      "options": [
+        { "value": "pending", "label": "Pending" },
+        { "value": "approved", "label": "Approved" },
+        { "value": "rejected", "label": "Rejected" },
+        { "value": "under_review", "label": "Under Review" }
       ],
-      "order": 38
+      "validations": [
+        { "validator": "required", "message": "Claim status is required" }
+      ],
+      "order": 60
     },
     {
       "key": "benefitGroup",
@@ -523,19 +195,6 @@
       "order": 44
     },
     {
-      "key": "claimType",
-      "label": "Claim Type",
-      "type": "select",
-      "options": [
-        { "value": "cashless", "label": "Cashless" },
-        { "value": "reimbursement", "label": "Reimbursement" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Claim type is required" }
-      ],
-      "order": 45
-    },
-    {
       "key": "productCode",
       "label": "Product Code",
       "type": "text",
@@ -544,6 +203,183 @@
         { "validator": "pattern", "message": "Invalid format (e.g., PROD123)", "value": "^PROD\\d{3}$" }
       ],
       "order": 46
+    },
+    {
+      "key": "agreedPackageRate",
+      "label": "Agreed Package Rate",
+      "type": "number",
+      "validations": [
+        { "validator": "required", "message": "Agreed package rate is required" },
+        { "validator": "min", "message": "Amount cannot be negative", "value": 0 }
+      ],
+      "order": 57
+    },
+    {
+      "key": "estimatedAmount",
+      "label": "Set Estimated Amount",
+      "type": "number",
+      "validations": [
+        { "validator": "required", "message": "Estimated amount is required" },
+        { "validator": "min", "message": "Amount cannot be negative", "value": 0 }
+      ],
+      "order": 56
+    },
+    {
+      "key": "roomEstimatedAmount",
+      "label": "Room Estimated Amount",
+      "type": "number",
+      "validations": [
+        { "validator": "required", "message": "Room estimated amount is required" },
+        { "validator": "min", "message": "Amount cannot be negative", "value": 0 }
+      ],
+      "order": 58
+    },
+    {
+      "key": "kycProvided",
+      "label": "KYC Provided",
+      "type": "checkbox",
+      "validations": [
+        { "validator": "required", "message": "KYC status is required" }
+      ],
+      "order": 59
+    },
+    {
+      "key": "selectSubType",
+      "label": "Select Sub Type",
+      "type": "select",
+      "options": [
+        { "value": "type1", "label": "Sub Type 1" },
+        { "value": "type2", "label": "Sub Type 2" },
+        { "value": "type3", "label": "Sub Type 3" }
+      ],
+      "validations": [
+        { "validator": "required", "message": "Sub Type is required" }
+      ],
+      "order": 21
+    },
+    {
+      "key": "inwardDateTime",
+      "label": "Inward Date and Time",
+      "type": "datetime-local",
+      "validations": [
+        { "validator": "required", "message": "Inward date/time is required" },
+        { 
+          "validator": "max", 
+          "message": "Date/time cannot be in the future",
+          "value": "now"
+        }
+      ],
+      "order": 38
+    },
+    {
+      "key": "patientName",
+      "label": "Patient Name",
+      "type": "text",
+      "validations": [
+        { "validator": "required", "message": "Patient name is required" },
+        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
+      ],
+      "order": 11
+    },
+    {
+      "key": "patientGender",
+      "label": "Patient Gender",
+      "type": "select",
+      "options": [
+        { "value": "male", "label": "Male" },
+        { "value": "female", "label": "Female" },
+        { "value": "other", "label": "Other" }
+      ],
+      "validations": [
+        { "validator": "required", "message": "Gender selection is required" }
+      ],
+      "order": 24
+    },
+    {
+      "key": "patientRelationship",
+      "label": "Patient Relationship",
+      "type": "select",
+      "options": [
+        { "value": "self", "label": "Self" },
+        { "value": "spouse", "label": "Spouse" },
+        { "value": "child", "label": "Child" },
+        { "value": "parent", "label": "Parent" }
+      ],
+      "validations": [
+        { "validator": "required", "message": "Relationship is required" }
+      ],
+      "order": 25
+    },
+    {
+      "key": "patientAge",
+      "label": "Patient Age",
+      "type": "number",
+      "validations": [
+        { "validator": "required", "message": "Age is required" },
+        { "validator": "min", "message": "Minimum age is 1", "value": 1 },
+        { "validator": "max", "message": "Maximum age is 120", "value": 120 }
+      ],
+      "order": 27
+    },
+    {
+      "key": "doa",
+      "label": "DOA",
+      "type": "date",
+      "validations": [
+        { "validator": "required", "message": "DOA is required" },
+        { 
+          "validator": "max", 
+          "message": "Date cannot be in the future",
+          "value": "today"
+        }
+      ],
+      "order": 53
+    },
+    {
+      "key": "alStartDate",
+      "label": "AL Start Date",
+      "type": "date",
+      "validations": [
+        { "validator": "required", "message": "AL start date is required" }
+      ],
+      "order": 54
+    },
+    {
+      "key": "alEndDate",
+      "label": "AL End Date",
+      "type": "date",
+      "validations": [
+        { "validator": "required", "message": "AL end date is required" }
+      ],
+      "order": 55
+    },
+    {
+      "key": "firstReportedDate",
+      "label": "First Reported Date",
+      "type": "date",
+      "validations": [
+        { "validator": "required", "message": "First reported date is required" },
+        { 
+          "validator": "max", 
+          "message": "Date cannot be in the future",
+          "value": "today"
+        }
+      ],
+      "order": 50
+    },
+    {
+      "key": "policyPortDate",
+      "label": "Policy Port Date / RHIL Policy Start Date",
+      "type": "date",
+      "validations": [
+        { "validator": "required", "message": "Policy port date is required" },
+        { 
+          "validator": "max", 
+          "message": "Date cannot be in the future",
+          "value": "today"
+        }
+      ],
+      "order": 51
     },
     {
       "key": "emergencyContactName",
@@ -579,184 +415,150 @@
       ],
       "order": 49
     },
+
     {
-      "key": "firstReportedDate",
-      "label": "First Reported Date",
-      "type": "date",
+      "key": "bankName",
+      "label": "Bank Name",
+      "type": "text",
       "validations": [
-        { "validator": "required", "message": "First reported date is required" },
-        { 
-          "validator": "max", 
-          "message": "Date cannot be in the future",
-          "value": "today"
-        }
+        { "validator": "required", "message": "Bank name is required" },
+        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
       ],
-      "order": 50
+      "order": 87
     },
     {
-      "key": "policyPortDate",
-      "label": "Policy Port Date / RHIL Policy Start Date",
-      "type": "date",
+      "key": "branchName",
+      "label": "Branch Name",
+      "type": "text",
       "validations": [
-        { "validator": "required", "message": "Policy port date is required" },
-        { 
-          "validator": "max", 
-          "message": "Date cannot be in the future",
-          "value": "today"
-        }
+        { "validator": "required", "message": "Branch name is required" },
+        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
       ],
-      "order": 51
+      "order": 88
     },
     {
-      "key": "customerConsent",
-      "label": "Customer Consent",
-      "type": "radio",
-      "options": [
-        { "value": "yes", "label": "Yes" },
-        { "value": "no", "label": "No" }
-      ],
+      "key": "ifscCode",
+      "label": "IFSC Code",
+      "type": "text",
       "validations": [
-        { "validator": "required", "message": "Consent is required" }
+        { "validator": "required", "message": "IFSC Code is required" },
+        { "validator": "pattern", "message": "Invalid IFSC format (e.g., ABCD0123456)", "value": "^[A-Za-z]{4}0[A-Za-z0-9]{6}$" }
       ],
-      "order": 52
+      "order": 89
     },
     {
-      "key": "doa",
-      "label": "DOA",
-      "type": "date",
-      "validations": [
-        { "validator": "required", "message": "DOA is required" },
-        { 
-          "validator": "max", 
-          "message": "Date cannot be in the future",
-          "value": "today"
-        }
-      ],
-      "order": 53
-    },
-    {
-      "key": "alStartDate",
-      "label": "AL Start Date",
-      "type": "date",
-      "validations": [
-        { "validator": "required", "message": "AL start date is required" }
-      ],
-      "order": 54
-    },
-    {
-      "key": "alEndDate",
-      "label": "AL End Date",
-      "type": "date",
-      "validations": [
-        { "validator": "required", "message": "AL end date is required" }
-      ],
-      "order": 55
-    },
-    {
-      "key": "estimatedAmount",
-      "label": "Set Estimated Amount",
-      "type": "number",
-      "validations": [
-        { "validator": "required", "message": "Estimated amount is required" },
-        { "validator": "min", "message": "Amount cannot be negative", "value": 0 }
-      ],
-      "order": 56
-    },
-    {
-      "key": "agreedPackageRate",
-      "label": "Agreed Package Rate",
-      "type": "number",
-      "validations": [
-        { "validator": "required", "message": "Agreed package rate is required" },
-        { "validator": "min", "message": "Amount cannot be negative", "value": 0 }
-      ],
-      "order": 57
-    },
-    {
-      "key": "roomEstimatedAmount",
-      "label": "Room Estimated Amount",
-      "type": "number",
-      "validations": [
-        { "validator": "required", "message": "Room estimated amount is required" },
-        { "validator": "min", "message": "Amount cannot be negative", "value": 0 }
-      ],
-      "order": 58
-    },
-    {
-      "key": "kycProvided",
-      "label": "KYC Provided",
-      "type": "checkbox",
-      "validations": [
-        { "validator": "required", "message": "KYC status is required" }
-      ],
-      "order": 59
-    },
-    {
-      "key": "claimStatus",
-      "label": "Status of Claim",
+      "key": "branchState",
+      "label": "Branch State",
       "type": "select",
       "options": [
-        { "value": "pending", "label": "Pending" },
-        { "value": "approved", "label": "Approved" },
-        { "value": "rejected", "label": "Rejected" },
-        { "value": "under_review", "label": "Under Review" }
+        { "value": "MH", "label": "Maharashtra" },
+        { "value": "DL", "label": "Delhi" },
+        { "value": "KA", "label": "Karnataka" },
+        { "value": "TN", "label": "Tamil Nadu" }
       ],
       "validations": [
-        { "validator": "required", "message": "Claim status is required" }
+        { "validator": "required", "message": "Branch state is required" }
       ],
-      "order": 60
+      "order": 90
     },
     {
-      "key": "classOfAccommodation",
-      "label": "Class of Accommodation",
+      "key": "branchCity",
+      "label": "Branch City",
+      "type": "text",
+      "validations": [
+        { "validator": "required", "message": "Branch city is required" },
+        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
+      ],
+      "order": 91
+    },
+   
+    {
+      "key": "branchAddress",
+      "label": "Branch Address",
+      "type": "textarea",
+      "validations": [
+        { "validator": "required", "message": "Branch address is required" },
+        { "validator": "minLength", "message": "Minimum 10 characters required", "value": 10 }
+      ],
+      "order": 93
+    },
+    {
+      "key": "accountType",
+      "label": "Account Type",
       "type": "select",
       "options": [
-        { "value": "standard", "label": "Standard" },
-        { "value": "deluxe", "label": "Deluxe" },
-        { "value": "premium", "label": "Premium" }
+        { "value": "savings", "label": "Savings Account" },
+        { "value": "current", "label": "Current Account" }
       ],
       "validations": [
-        { "validator": "required", "message": "Class of accommodation is required" }
+        { "validator": "required", "message": "Account type is required" }
       ],
-      "order": 61
+      "order": 94
     },
     {
-      "key": "startDate",
-      "label": "Start Date",
-      "type": "date",
+      "key": "payeeName",
+      "label": "Payee Name",
+      "type": "text",
       "validations": [
-        { "validator": "required", "message": "Start date is required" }
+        { "validator": "required", "message": "Payee name is required" },
+        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
       ],
-      "order": 62
+      "order": 95
     },
     {
-      "key": "endDate",
-      "label": "End Date",
-      "type": "date",
+        "key": "bankAccountNumber",
+        "label": "Bank Account Number",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Account number is required" },
+          { "validator": "minLength", "message": "Minimum 9 digits required", "value": 9 },
+          { "validator": "maxLength", "message": "Maximum 18 digits allowed", "value": 18 },
+          { "validator": "pattern", "message": "Only numbers are allowed", "value": "^[0-9]+$" }
+        ],
+        "order": 10
+      },
+ 
+    {
+      "key": "cancelledCheque",
+      "label": "Scanned Copy of Cancelled Cheque",
+      "type": "file",
       "validations": [
-        { "validator": "required", "message": "End date is required" }
+        { "validator": "required", "message": "Cancelled cheque is required" }
       ],
-      "order": 63
+      "order": 97
     },
     {
-      "key": "lengthOfStay",
-      "label": "Length of Stay",
-      "type": "number",
+      "key": "neftFrom",
+      "label": "NEFT From",
+      "type": "text",
       "validations": [
-        { "validator": "required", "message": "Length of stay is required" },
-        { "validator": "min", "message": "Must be at least 1 day", "value": 1 }
+        { "validator": "required", "message": "NEFT details are required" }
       ],
-      "order": 64
+      "order": 98
     },
     {
-      "key": "numberOfDays",
-      "label": "Number of Days",
-      "type": "number",
+      "key": "upiId",
+      "label": "UPI ID",
+      "type": "text",
       "validations": [
-        { "validator": "required", "message": "Number of days is required" },
-        { "validator": "min", "message": "Must be at least 1 day", "value": 1 }
+        { "validator": "required", "message": "UPI ID is required" },
+        { "validator": "pattern", "message": "Invalid UPI ID format", "value": "^[a-zA-Z0-9.-]{2,256}@[a-zA-Z]{2,64}$" }
       ],
-      "order": 65
+      "order": 99
+    },
+    {
+      "key": "paymentMode",
+      "label": "Mode of Payment",
+      "type": "select",
+      "options": [
+        { "value": "neft", "label": "NEFT" },
+        { "value": "upi", "label": "UPI" },
+        { "value": "cheque", "label": "Cheque" }
+      ],
+      "validations": [
+        { "validator": "required", "message": "Payment mode is required" }
+      ],
+      "order": 9
     },
     {
       "key": "ped",
@@ -882,34 +684,56 @@
       "order": 77
     },
     {
-      "key": "icdCode",
-      "label": "ICD Code",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "ICD code is required" },
-        { "validator": "pattern", "message": "Invalid ICD code format", "value": "^[A-Za-z0-9]{3,7}$" }
+      "key": "classOfAccommodation",
+      "label": "Class of Accommodation",
+      "type": "select",
+      "options": [
+        { "value": "standard", "label": "Standard" },
+        { "value": "deluxe", "label": "Deluxe" },
+        { "value": "premium", "label": "Premium" }
       ],
-      "order": 79
+      "validations": [
+        { "validator": "required", "message": "Class of accommodation is required" }
+      ],
+      "order": 61
     },
     {
-      "key": "cptCode",
-      "label": "CPT Code",
-      "type": "text",
+      "key": "startDate",
+      "label": "Start Date",
+      "type": "date",
       "validations": [
-        { "validator": "required", "message": "CPT code is required" },
-        { "validator": "pattern", "message": "Invalid CPT code format", "value": "^[A-Za-z0-9]{5}$" }
+        { "validator": "required", "message": "Start date is required" }
       ],
-      "order": 80
+      "order": 62
     },
     {
-      "key": "pcsCode",
-      "label": "PCS Code",
-      "type": "text",
+      "key": "endDate",
+      "label": "End Date",
+      "type": "date",
       "validations": [
-        { "validator": "required", "message": "PCS code is required" },
-        { "validator": "pattern", "message": "Invalid PCS code format", "value": "^[A-Za-z0-9]{7}$" }
+        { "validator": "required", "message": "End date is required" }
       ],
-      "order": 81
+      "order": 63
+    },
+    {
+      "key": "lengthOfStay",
+      "label": "Length of Stay",
+      "type": "number",
+      "validations": [
+        { "validator": "required", "message": "Length of stay is required" },
+        { "validator": "min", "message": "Must be at least 1 day", "value": 1 }
+      ],
+      "order": 64
+    },
+    {
+      "key": "numberOfDays",
+      "label": "Number of Days",
+      "type": "number",
+      "validations": [
+        { "validator": "required", "message": "Number of days is required" },
+        { "validator": "min", "message": "Must be at least 1 day", "value": 1 }
+      ],
+      "order": 65
     },
     {
       "key": "doctorName",
@@ -922,183 +746,256 @@
       "order": 82
     },
     {
-      "key": "doctorRegNo",
-      "label": "Registration Number",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Registration number is required" },
-        { "validator": "pattern", "message": "Invalid format (e.g., REG12345)", "value": "^[A-Za-z]{3}\\d{5}$" }
-      ],
-      "order": 83
-    },
-    {
-      "key": "doctorSpecialty",
-      "label": "Specialty",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Specialty is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 84
-    },
-    {
-      "key": "doctorQualification",
-      "label": "Qualification",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Qualification is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 85
-    },
-    {
-      "key": "stateMedicalCouncil",
-      "label": "State Medical Council",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "State Medical Council is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 86
-    },
-    {
-      "key": "bankName",
-      "label": "Bank Name",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Bank name is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 87
-    },
-    {
-      "key": "branchName",
-      "label": "Branch Name",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Branch name is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 88
-    },
-    {
-      "key": "ifscCode",
-      "label": "IFSC Code",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "IFSC Code is required" },
-        { "validator": "pattern", "message": "Invalid IFSC format (e.g., ABCD0123456)", "value": "^[A-Za-z]{4}0[A-Za-z0-9]{6}$" }
-      ],
-      "order": 89
-    },
-    {
-      "key": "branchState",
-      "label": "Branch State",
-      "type": "select",
-      "options": [
-        { "value": "MH", "label": "Maharashtra" },
-        { "value": "DL", "label": "Delhi" },
-        { "value": "KA", "label": "Karnataka" },
-        { "value": "TN", "label": "Tamil Nadu" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Branch state is required" }
-      ],
-      "order": 90
-    },
-    {
-      "key": "branchCity",
-      "label": "Branch City",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Branch city is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 91
-    },
-    {
-      "key": "doctorPincode",
-      "label": "Doctor and Consultant Details - Pin code",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Pin code is required" },
-        { "validator": "pattern", "message": "Invalid pincode format", "value": "^[1-9]{1}[0-9]{5}$" }
-      ],
-      "order": 92
-    },
-    {
-      "key": "branchAddress",
-      "label": "Branch Address",
-      "type": "textarea",
-      "validations": [
-        { "validator": "required", "message": "Branch address is required" },
-        { "validator": "minLength", "message": "Minimum 10 characters required", "value": 10 }
-      ],
-      "order": 93
-    },
-    {
-      "key": "accountType",
-      "label": "Account Type",
-      "type": "select",
-      "options": [
-        { "value": "savings", "label": "Savings Account" },
-        { "value": "current", "label": "Current Account" }
-      ],
-      "validations": [
-        { "validator": "required", "message": "Account type is required" }
-      ],
-      "order": 94
-    },
-    {
-      "key": "payeeName",
-      "label": "Payee Name",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Payee name is required" },
-        { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
-      ],
-      "order": 95
-    },
-    {
-      "key": "accountNumber",
-      "label": "Account Number",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "Account number is required" },
-        { "validator": "pattern", "message": "Invalid account number format", "value": "^[0-9]{9,18}$" }
-      ],
-      "order": 96
-    },
-    {
-      "key": "cancelledCheque",
-      "label": "Scanned Copy of Cancelled Cheque",
-      "type": "file",
-      "validations": [
-        { "validator": "required", "message": "Cancelled cheque is required" }
-      ],
-      "order": 97
-    },
-    {
-      "key": "neftFrom",
-      "label": "NEFT From",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "NEFT details are required" }
-      ],
-      "order": 98
-    },
-    {
-      "key": "upiId",
-      "label": "UPI ID",
-      "type": "text",
-      "validations": [
-        { "validator": "required", "message": "UPI ID is required" },
-        { "validator": "pattern", "message": "Invalid UPI ID format", "value": "^[a-zA-Z0-9.-]{2,256}@[a-zA-Z]{2,64}$" }
-      ],
-      "order": 99
-    }
-
-   
-
+        "key": "doctorRegNo",
+        "label": "Registration Number",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Registration number is required" },
+          { "validator": "pattern", "message": "Invalid format (e.g., REG12345)", "value": "^[A-Za-z]{3}\\d{5}$" }
+        ],
+        "order": 83
+      },
+      {
+        "key": "doctorSpecialty",
+        "label": "doctorSpecialty",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Specialty is required" },
+          { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
+        ],
+        "order": 84
+      },
+      {
+        "key": "doctorQualification",
+        "label": "doctorQualification",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Qualification is required" },
+          { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
+        ],
+        "order": 85
+      },
+      {
+        "key": "stateMedicalCouncil",
+        "label": "stateMedicalCouncil",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "State Medical Council is required" },
+          { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
+        ],
+        "order": 86
+      },
+      {
+        "key": "icdCode",
+        "label": "ICD Code",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "ICD code is required" },
+          { "validator": "pattern", "message": "Invalid ICD code format", "value": "^[A-Za-z0-9]{3,7}$" }
+        ],
+        "order": 78
+      },
+      {
+        "key": "cptCode",
+        "label": "CPT Code",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "CPT code is required" },
+          { "validator": "pattern", "message": "Invalid CPT code format", "value": "^[A-Za-z0-9]{5}$" }
+        ],
+        "order": 79
+      },
+      {
+        "key": "pcsCode",
+        "label": "PCS Code",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "PCS code is required" },
+          { "validator": "pattern", "message": "Invalid PCS code format", "value": "^[A-Za-z0-9]{7}$" }
+        ],
+        "order": 80
+      },
+      {
+        "key": "casePriority",
+        "label": "Case Priority",
+        "type": "radio",
+        "options": [
+          { "value": "priority", "label": "Priority Case" },
+          { "value": "death", "label": "Death Case" }
+        ],
+        "validations": [
+          { "validator": "required", "message": "Case priority is required" }
+        ],
+        "order": 23
+      },
+      {
+        "key": "customerConsent",
+        "label": "Customer Consent",
+        "type": "radio",
+        "options": [
+          { "value": "yes", "label": "Yes" },
+          { "value": "no", "label": "No" }
+        ],
+        "validations": [
+          { "validator": "required", "message": "Consent is required" }
+        ],
+        "order": 52
+      },
+      {
+        "key": "policyHolderName",
+        "label": "Policy Holder's Name",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Policy holder name is required" }
+        ],
+        "order": 2
+      },
+      {
+        "key": "insuredNames",
+        "label": "Insured Person Name(s)",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Insured names are required" }
+        ],
+        "order": 3
+      },
+      {
+        "key": "dateOfBirth",
+        "label": "Date of Birth",
+        "type": "date",
+        "validations": [
+          { "validator": "required", "message": "Date of Birth is required" }
+        ],
+        "order": 4
+      },
+      {
+        "key": "policyExpiryDate",
+        "label": "Policy Expiry Date",
+        "type": "date",
+        "value": "2024-01-01", 
+        "validations": [
+          { "validator": "required", "message": "Policy expiry date is required" },
+          { 
+            "validator": "min", 
+            "message": "Expiry must be after start date",
+            "value": "policyStartDate" 
+          }
+        ],
+        "order": 8
+      },
+      {
+        "key": "policyType",
+        "label": "Policy Type",
+        "type": "select",
+        "options": [
+          { "value": "individual", "label": "Individual" },
+          { "value": "family", "label": "Family Floater" },
+          { "value": "senior", "label": "Senior Citizen" }
+        ],
+        "validations": [
+          { "validator": "required", "message": "Policy type is required" }
+        ],
+        "order": 26
+      },
+      {
+        "key": "policyAttachmentDate",
+        "label": "Policy Attachment Date",
+        "type": "date",
+        "validations": [
+          { "validator": "required", "message": "Attachment date is required" },
+          { 
+            "validator": "max", 
+            "message": "Date cannot be in the future",
+            "value": "today"
+          }
+        ],
+        "order": 29
+      },
+      {
+        "key": "contactNumber",
+        "label": "Contact Number",
+        "type": "tel",
+        "validations": [
+          { "validator": "required", "message": "Contact number is required" },
+          { "validator": "pattern", "message": "Invalid phone number format", "value": "^[0-9]{10}$" }
+        ],
+        "order": 5
+      },
+      {
+        "key": "emailId",
+        "label": "Email ID",
+        "type": "email",
+        "validations": [
+          { "validator": "required", "message": "Email is required" },
+          { "validator": "pattern", "message": "Invalid email format", "value": "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" }
+        ],
+        "order": 6
+      },
+      {
+        "key": "internalRemarks",
+        "label": "Internal Remarks",
+        "type": "textarea",
+        "validations": [
+          { "validator": "required", "message": "Remarks are required" },
+          { "validator": "maxLength", "message": "Maximum 500 characters allowed", "value": 500 }
+        ],
+        "order": 22
+      },
+      {
+        "key": "providerCity",
+        "label": "Provider City",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "City is required" },
+          { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
+        ],
+        "order": 33
+      },
+      {
+        "key": "providerEmail",
+        "label": "Provider Email ID",
+        "type": "email",
+        "validations": [
+          { "validator": "required", "message": "Email is required" },
+          { 
+            "validator": "pattern", 
+            "message": "Invalid email format", 
+            "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$" 
+          }
+        ],
+        "order": 34
+      },
+      {
+        "key": "providerPincode",
+        "label": "Provider Pin code",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Pincode is required" },
+          { "validator": "pattern", "message": "Invalid pincode format", "value": "^[1-9]{1}[0-9]{5}$" }
+        ],
+        "order": 32
+      },  
+      {
+        "key": "providerDistrict",
+        "label": "Provider District",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "District is required" },
+          { "validator": "minLength", "message": "Minimum 3 characters required", "value": 3 }
+        ],
+        "order": 31
+      },
+      {
+        "key": "providerId",
+        "label": "Provider ID",
+        "type": "text",
+        "validations": [
+          { "validator": "required", "message": "Provider ID is required" },
+          { "validator": "pattern", "message": "Invalid format (PROVXXXXX)", "value": "^PROV\\d{5}$" },
+          { "validator": "minLength", "message": "Must be 9 characters", "value": 9 },
+          { "validator": "maxLength", "message": "Must be 9 characters", "value": 9 }
+        ],
+        "order": 30
+      }  
   ]
 }

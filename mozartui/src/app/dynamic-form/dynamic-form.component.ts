@@ -91,11 +91,26 @@ export class DynamicFormComponent implements OnChanges {
       //     defaultValue = new Date().toISOString().split('T')[0];
       //   }
       // }
+
+
       // Handle date defaults
-      if (control.type === 'date' || control.type === 'datetime-local') {
-        if (control.value === 'today') {
+      // if (control.type === 'date' || control.type === 'datetime-local') {
+      //   if (control.value === 'today') {
+      //     const now = new Date();
+      //     defaultValue = now.toISOString().slice(0, control.type === 'date' ? 10 : 16);
+      //   }
+      // }
+
+       // Handle date/datetime defaults
+       if (control.type === 'date' || control.type === 'datetime-local') {
+        if (control.value === 'today' || control.value === 'now') {
           const now = new Date();
-          defaultValue = now.toISOString().slice(0, control.type === 'date' ? 10 : 16);
+          if (control.type === 'date') {
+            defaultValue = now.toISOString().split('T')[0];
+          } else {
+            // Adjust for datetime-local format (remove seconds and milliseconds)
+            defaultValue = now.toISOString().slice(0, 16);
+          }
         }
       }
 
@@ -122,13 +137,22 @@ export class DynamicFormComponent implements OnChanges {
             case 'pattern':
               validators.push(Validators.pattern(validation.value));
               break;
+            // case 'min':
+            //   const minDate = this.getDateValue(validation.value);
+            //   validators.push(this.dateValidator(minDate, true));
+            //   break;
+            // case 'max':
+            //   const maxDate = this.getDateValue(validation.value);
+            //   validators.push(this.dateValidator(maxDate, false));
+            //   break;
             case 'min':
-              const minDate = this.getDateValue(validation.value);
-              validators.push(this.dateValidator(minDate, true));
-              break;
             case 'max':
-              const maxDate = this.getDateValue(validation.value);
-              validators.push(this.dateValidator(maxDate, false));
+              const compareDate = this.getDateValue(validation.value, control.type);
+              validators.push(this.dateTimeValidator(
+                compareDate, 
+                validation.validator === 'min',
+                control.type
+              ));
               break;
           }
         });
@@ -150,26 +174,58 @@ export class DynamicFormComponent implements OnChanges {
   // }
 
 
-  private getDateValue(value: any): Date | null {
-    if (value === 'today') {
-      const date = new Date();
-      date.setHours(0, 0, 0, 0);
-      return date;
+  // private getDateValue(value: any): Date | null {
+  //   if (value === 'today') {
+  //     const date = new Date();
+  //     date.setHours(0, 0, 0, 0);
+  //     return date;
+  //   }
+  //   if (value === 'policyStartDate') {
+  //     const startDate = this.form?.get('policyStartDate')?.value;
+  //     if (startDate) {
+  //       const date = new Date(startDate);
+  //       date.setHours(0, 0, 0, 0);
+  //       return date;
+  //     }
+  //     return null;
+  //   }
+  //   if (value) {
+  //     const date = new Date(value);
+  //     date.setHours(0, 0, 0, 0);
+  //     return date;
+  //   }
+  //   return null;
+  // }
+
+  private getDateValue(value: any, fieldType: string): Date | null {
+    if (value === 'today' || value === 'now') {
+      const now = new Date();
+      if (fieldType === 'date') {
+        now.setHours(0, 0, 0, 0);
+      }
+      return now;
     }
+    
     if (value === 'policyStartDate') {
       const startDate = this.form?.get('policyStartDate')?.value;
       if (startDate) {
         const date = new Date(startDate);
-        date.setHours(0, 0, 0, 0);
+        if (fieldType === 'date') {
+          date.setHours(0, 0, 0, 0);
+        }
         return date;
       }
       return null;
     }
+    
     if (value) {
       const date = new Date(value);
-      date.setHours(0, 0, 0, 0);
+      if (fieldType === 'date') {
+        date.setHours(0, 0, 0, 0);
+      }
       return date;
     }
+    
     return null;
   }
 
@@ -209,6 +265,31 @@ export class DynamicFormComponent implements OnChanges {
       // Clone compareDate to avoid mutation
       const compareDateCopy = new Date(compareDate);
       compareDateCopy.setHours(0, 0, 0, 0);
+
+      const isValid = isMinValidation 
+        ? inputDate >= compareDateCopy
+        : inputDate <= compareDateCopy;
+
+      return isValid ? null : { dateValidation: true };
+    };
+  }
+
+  private dateTimeValidator(
+    compareDate: Date | null,
+    isMinValidation: boolean,
+    fieldType: string
+  ): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!compareDate || !control.value) return null;
+
+      const inputDate = new Date(control.value);
+      const compareDateCopy = new Date(compareDate);
+
+      if (fieldType === 'date') {
+        // Compare dates only (ignore time)
+        inputDate.setHours(0, 0, 0, 0);
+        compareDateCopy.setHours(0, 0, 0, 0);
+      }
 
       const isValid = isMinValidation 
         ? inputDate >= compareDateCopy
